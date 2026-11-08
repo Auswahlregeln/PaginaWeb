@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Ciencia del Gol: El Arte y Estrategia del Fútbol</title>
+    <!-- FontAwesome para Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-main: #061510;
+            --bg-card: #0d261e;
+            --accent-green: #10b981;
+            --accent-gold: #f59e0b;
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #1b4d3e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-subtitle { color: var(--text-muted); margin-bottom: 2rem; }
+
+        .badge {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            display: inline-block;
+        }
+
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: #000;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-gold:hover { background-color: #d97706; transform: translateY(-2px); }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .card:hover { border-color: var(--accent-green); }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(6, 21, 16, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 4.5rem;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ffffff;
+        }
+
+        .nav-logo i { color: var(--accent-green); }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover { color: var(--accent-green); }
+
+        .portada {
+            padding: 5rem 0 3rem 0;
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.15), transparent 50%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .portada-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .meta-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 2rem;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .meta-item:last-child { border-bottom: none; }
+
+        .meta-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accent-green);
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+        .img-container {
+            width: 100%;
+            height: 240px;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background-color: #030a07;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .record-img-container {
+            width: 100%;
+            background-color: #030a07;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem;
+        }
+
+        .record-img-container img {
+            width: 100%;
+            height: auto;
+            max-height: 420px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .card:hover .img-container img { transform: scale(1.02); }
+
+        .zoomable-img-container {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            border: 1px solid var(--border-color);
+            background-color: #030a07;
+        }
+        .zoomable-img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .zoomable-img-container:hover img {
+            transform: scale(1.03);
+        }
+        .zoom-overlay {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(6, 21, 16, 0.85);
+            color: var(--accent-gold);
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.4rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--accent-gold);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .modal-content {
+            max-width: 95%;
+            max-height: 90vh;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+            object-fit: contain;
+        }
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close-modal:hover { color: var(--accent-gold); }
+
+        .carousel-slide { display: none; width: 100%; height: 100%; cursor: pointer; position: relative; }
+        .carousel-slide.active { display: flex; align-items: center; justify-content: center; background-color: #15803d; }
+        .carousel-slide img { max-height: 240px; width: auto; max-width: 100%; object-fit: contain; }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        .carousel-btn {
+            background-color: var(--border-color);
+            color: var(--text-light);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.35rem;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.3s;
+        }
+        .carousel-btn:hover { background-color: var(--accent-green); color: #000; }
+
+        .video-card {
+            background: linear-gradient(135deg, #0d261e 0%, #13382c 100%);
+            border: 1px solid var(--accent-green);
+            border-radius: 1rem;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .portada-grid, .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="nav-logo">
+                    <i class="fa-solid fa-soccer-ball"></i>
+                    <span>FÚTBOL Y CIENCIA</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#portada" class="nav-link">Inicio</a></li>
+                    <li><a href="#historia" class="nav-link">Historia</a></li>
+                    <li><a href="#reglas" class="nav-link">Jugadores y Reglas</a></li>
+                    <li><a href="#terreno" class="nav-link">Terreno</a></li>
+                    <li><a href="#tactica" class="nav-link">Táctica</a></li>
+                    <li><a href="#torneos" class="nav-link">Torneos</a></li>
+                    <li><a href="#records" class="nav-link">Récords</a></li>
+                    <li><a href="#conclusion" class="nav-link">Conclusión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Portada Académica -->
+    <div id="portada" class="portada">
+        <div class="container">
+            <div class="portada-grid">
+                <div>
+                    <span class="badge">Evidencia de Aprendizaje 4</span>
+                    <h1 style="font-size: 2.75rem; font-weight: 900; margin: 1rem 0; line-height: 1.2;">
+                        El Arte del Gol: <span style="color: var(--accent-green);">Evolución y Ciencia del Fútbol</span>
+                    </h1>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">
+                        Un análisis estructurado sobre la evolución histórica del fútbol, sus reglas fundamentales, tácticas, terreno de juego y récords míticos.
+                    </p>
+                    <a href="#historia" class="btn-gold">
+                        <i class="fa-solid fa-arrow-down"></i> Explorar Contenido
+                    </a>
+                </div>
+
+                <div class="meta-card">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--accent-gold); display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-graduation-cap"></i> Datos de Identificación
+                    </h3>
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class="fa-solid fa-user"></i></div>
+                        <div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Estudiante</div>
+                            <div style="font-weight: 700;">Francisco Marines Santillán</div>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class="fa-solid fa-id-card"></i></div>
+                        <div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Matrícula</div>
+                            <div style="font-weight: 700;">1972502</div>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class="fa-solid fa-book"></i></div>
+                        <div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Unidad de Aprendizaje</div>
+                            <div style="font-weight: 700;">Aplicación de las Tecnologías de la Información</div>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class="fa-solid fa-university"></i></div>
+                        <div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Institución</div>
+                            <div style="font-weight: 700;">Facultad de Organización Deportiva</div>
+                        </div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-icon"><i class="fa-solid fa-calendar"></i></div>
+                        <div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Fecha de Elaboración</div>
+                            <div style="font-weight: 700;">7 de Noviembre de 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. Orígenes e Historia -->
+    <section id="historia">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-clock-rotate-left" style="color: var(--accent-green);"></i> Orígenes e Historia del Fútbol</h2>
+            <p class="section-subtitle">Desde los antecedentes antiguos (Cuju) hasta la unificación de las reglas modernas en Inglaterra.</p>
+
+            <div class="grid-2" style="margin-bottom: 2.5rem;">
+                <div class="card">
+                    <div class="img-container">
+                        <img src="cuju.jpg" alt="Orígenes del Fútbol - Cuju">
+                    </div>
+                    <span class="badge">Antecedente Ancestral</span>
+                    <h3 style="margin: 0.75rem 0;">El Cuju y los Orígenes</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+                        Entre los antecedentes más antiguos del deporte se encuentra el *Cuju* practicado en la antigua China. Posteriormente, el fútbol moderno se formalizó en Londres en 1863 al unificar las reglas y separar el juego de manos del rugby.
+                    </p>
+                    <a href="https://www.fifamuseum.com/en/explore/fifamuseumplus/blog/origins-cuju-in-china" target="_blank" style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-external-link-alt"></i> Leer Reseña Histórica del Cuju (FIFA Museum)
+                    </a>
+                </div>
+
+                <div class="card">
+                    <div class="img-container">
+                        <img src="17.jpg" alt="Laws of the Game - IFAB">
+                    </div>
+                    <span class="badge">Reglamento IFAB</span>
+                    <h3 style="margin: 0.75rem 0;">Las 17 Reglas Esenciales</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+                        El organismo internacional IFAB regula las <strong>17 reglas oficiales</strong> del fútbol, normando aspectos clave como la duración de los partidos (dos tiempos de 45 min), sanciones disciplinarias y estatutos generales.
+                    </p>
+                    <a href="https://www.theifab.com/es/laws/latest/about-the-laws/" target="_blank" style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-external-link-alt"></i> Consultar Índice de las 17 Reglas (IFAB Oficial)[cite: 1]
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video Requerido YouTube -->
+            <div class="video-card">
+                <i class="fa-brands fa-youtube" style="font-size: 3.5rem; color: #ef4444;"></i>
+                <div>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Documental Recomendado: La Historia del Fútbol en 10 Minutos</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 700px; margin: 0 auto;">
+                        Video educativo completo sobre los orígenes, antecedentes antiguos y el desarrollo del fútbol moderno reglamentado.
+                    </p>
+                </div>
+                <a href="https://www.youtube.com/watch?v=rmO96qcYYiE" target="_blank" class="btn-gold">
+                    <i class="fa-solid fa-play"></i> Reproducir Video en YouTube
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Reglas Básicas y Jugadores -->
+    <section id="reglas">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-users" style="color: var(--accent-green);"></i> Reglas Básicas y Composición de los Equipos</h2>
+            <p class="section-subtitle">Conceptos fundamentales sobre cómo se conforma un partido de fútbol profesional.</p>
+
+            <div class="grid-3" style="margin-bottom: 2rem;">
+                <div class="card">
+                    <i class="fa-solid fa-user-group" style="font-size: 2.2rem; color: var(--accent-gold); margin-bottom: 1rem;"></i>
+                    <h3>11 vs 11 Jugadores</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">
+                        Un partido oficial es disputado por dos equipos de máximo <strong>11 jugadores cada uno en cancha</strong> (uno de los cuales actúa como guardameta). El juego no puede iniciar ni continuar si un equipo tiene menos de 7 jugadores.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-people-arrows" style="font-size: 2.2rem; color: var(--accent-gold); margin-bottom: 1rem;"></i>
+                    <h3>Sustituciones</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">
+                        Cada equipo cuenta con una lista de suplentes y en torneos oficiales se permiten generalmente hasta <strong>5 sustituciones por partido</strong> para preservar la integridad física de los futbolistas.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <i class="fa-solid fa-clipboard-user" style="font-size: 2.2rem; color: var(--accent-gold); margin-bottom: 1rem;"></i>
+                    <h3>Cuerpo Arbitral</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">
+                        La máxima autoridad es el <strong>árbitro principal</strong> dentro del campo, asistido por dos árbitros asistentes en las bandas, un cuarto árbitro y el sistema de videoarbitraje (VAR).
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid-4">
+                <div class="card">
+                    <i class="fa-solid fa-shield-halved" style="font-size: 1.8rem; color: var(--accent-green); margin-bottom: 0.75rem;"></i>
+                    <h4>Defensa y Portería</h4>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.4rem;">
+                        Guardameta (único habilitado para usar las manos en su área), centrales y laterales encargados de la contención.
+                    </p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-arrows-split-up-and-left" style="font-size: 1.8rem; color: var(--accent-green); margin-bottom: 0.75rem;"></i>
+                    <h4>Mediocampo</h4>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.4rem;">
+                        Pivotes y volantes creativos. Distribuyen el balón, marcan el ritmo del juego y conectan las líneas.
+                    </p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-bolt" style="font-size: 1.8rem; color: var(--accent-green); margin-bottom: 0.75rem;"></i>
+                    <h4>Delantera</h4>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.4rem;">
+                        Extremos veloces y centrodelanteros de área dedicados a romper las líneas rivales y marcar goles.
+                    </p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-diagram-project" style="font-size: 1.8rem; color: var(--accent-green); margin-bottom: 0.75rem;"></i>
+                    <h4>Sistemas de Juego</h4>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.4rem;">
+                        Esquemas colectivos organizados para optimizar el rendimiento táctico durante las fases de ataque y defensa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Terreno e Infraestructura -->
+    <section id="terreno">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-vector-square" style="color: var(--accent-green);"></i> Dimensiones e Infraestructura</h2>
+            <p class="section-subtitle">Especificaciones técnicas y diagrama reglamentario del terreno de juego.</p>
+
+            <div class="grid-2">
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="margin-bottom: 1rem; color: var(--accent-gold);">Diagrama Reglamentario</h3>
+                        
+                        <div class="zoomable-img-container" onclick="openModal('campo.svg')">
+                            <img src="campo.svg" alt="Diagrama reglamentario del terreno de juego">
+                            <div class="zoom-overlay">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i> Clic para agrandar
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3 style="margin-bottom: 1rem; color: var(--accent-gold);">Especificaciones Clave IFAB</h3>
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.95rem;">
+                            <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                                <i class="fa-solid fa-ruler-combined" style="color: var(--accent-green); margin-top: 0.25rem;"></i>
+                                <div><strong>Límites Generales:</strong> Longitud (90 m - 120 m) y Ancho (45 m - 90 m). En partidos internacionales el estándar habitual es 105 m x 68 m.</div>
+                            </li>
+                            <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                                <i class="fa-solid fa-bullseye" style="color: var(--accent-green); margin-top: 0.25rem;"></i>
+                                <div><strong>Áreas Clave:</strong> Punto penal ubicado a 11 m de la meta, con un radio del círculo central y semicírculo del área de 9.15 m.</div>
+                            </li>
+                            <li style="display: flex; gap: 0.75rem; align-items: flex-start;">
+                                <i class="fa-solid fa-door-open" style="color: var(--accent-green); margin-top: 0.25rem;"></i>
+                                <div><strong>Porterías y Esquinas:</strong> Arcos de 7.32 m de ancho x 2.44 m de alto y área de meta extendida a 5.5 m de cada poste.</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                        <a href="https://www.theifab.com/laws/latest/the-field-of-play/" target="_blank" style="color: var(--accent-gold); font-weight: 700; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-external-link-alt"></i> Consultar Regla 1: El Terreno de Juego (IFAB)[cite: 1]
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Táctica -->
+    <section id="tactica">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-chess-board" style="color: var(--accent-green);"></i> Táctica y Formaciones</h2>
+            <p class="section-subtitle">El desarrollo de estrategias colectivas y la distribución táctica en el campo.</p>
+
+            <div class="grid-2">
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="img-container">
+                            <img src="colectivos.jpg" alt="Estrategia colectiva y pizarra táctica">
+                        </div>
+                        <h3>Estrategia Colectiva</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.75rem;">
+                            La táctica en el fútbol busca dominar los espacios mediante pases rápidos, presión en bloque y movimientos colectivos para superar las líneas del rival. 
+                        </p>
+                    </div>
+
+                    <div style="background-color: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 0.5rem; padding: 0.85rem; margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-muted);">
+                        <i class="fa-solid fa-circle-info" style="color: var(--accent-green);"></i> 
+                        <strong>Nota metodológica:</strong> Aunque en el fútbol actual existen múltiples formaciones (como 3-5-2 o 4-2-3-1), en este apartado se muestran únicamente el <strong>4-3-3</strong> y el <strong>4-4-2</strong> por ser los sistemas base más equilibrados.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="img-container" style="position: relative;">
+                        <div class="carousel-slide active" data-index="0" onclick="openModal('433.png')">
+                            <img src="433.png" alt="Distribución Táctica 4-3-3">
+                            <div class="zoom-overlay">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i> Clic para agrandar
+                            </div>
+                        </div>
+                        <div class="carousel-slide" data-index="1" onclick="openModal('422.png')">
+                            <img src="422.png" alt="Distribución Táctica 4-4-2">
+                            <div class="zoom-overlay">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i> Clic para agrandar
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="carousel-info-0" class="carousel-content active">
+                        <span class="badge">Formación 4-3-3</span>
+                        <h3 style="margin: 0.5rem 0;">Equilibrio y Amplitud</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">
+                            Con 4 defensas, 3 mediocampistas y 3 delanteros, este sistema busca dominar la posesión, generar superioridad numérica en la medular y amplitud por las bandas.
+                        </p>
+                    </div>
+                    <div id="carousel-info-1" class="carousel-content" style="display: none;">
+                        <span class="badge">Formación 4-4-2</span>
+                        <h3 style="margin: 0.5rem 0;">Bloque Compacto</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">
+                            Estructura de 4 defensas, 4 mediocampistas y 2 delanteros. Se caracteriza por su gran solidez defensiva, líneas juntas y transiciones rápidas al contragolpe.
+                        </p>
+                    </div>
+
+                    <div class="carousel-controls">
+                        <button class="carousel-btn" onclick="changeSlide(-1)"><i class="fa-solid fa-chevron-left"></i> Anterior</button>
+                        <span id="slide-indicator" style="font-size: 0.85rem; color: var(--text-muted);">1 / 2</span>
+                        <button class="carousel-btn" onclick="changeSlide(1)">Siguiente <i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Torneos -->
+    <section id="torneos">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-trophy" style="color: var(--accent-gold);"></i> Competiciones de Mayor Prestigio</h2>
+            <p class="section-subtitle">Los torneos más relevantes a nivel mundial de selecciones y clubes.</p>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="img-container">
+                        <img src="FIFA-WORLD-CUP.jpg" alt="Copa Mundial de la FIFA">
+                    </div>
+                    <span class="badge">Mundial de Selecciones</span>
+                    <h3 style="margin: 0.5rem 0;">Copa Mundial de la FIFA</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">
+                        La máxima cita del deporte que se disputa cada cuatro años reuniendo a los mejores países del orbe.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="img-container">
+                        <img src="UEFA-CHAMPIONS-LEAGUE.jpg" alt="UEFA Champions League">
+                    </div>
+                    <span class="badge">Europa</span>
+                    <h3 style="margin: 0.5rem 0;">UEFA Champions League</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">
+                        El torneo de clubes más competitivo y prestigioso del planeta.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="img-container">
+                        <img src="libertadores.jpg" alt="Copa Libertadores">
+                    </div>
+                    <span class="badge">Sudamérica</span>
+                    <h3 style="margin: 0.5rem 0;">Copa Libertadores</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">
+                        Emblema del fútbol sudamericano, reconocido por su fervor e intensidad táctica incomparable.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Récords Legendarios -->
+    <section id="records">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-fire" style="color: var(--accent-gold);"></i> Récords Legendarios del Fútbol</h2>
+            <p class="section-subtitle">Hazañas individuales y registros insuperables en la historia del fútbol profesional.</p>
+
+            <div class="grid-2" style="margin-bottom: 2rem;">
+                <div class="card" style="border-left: 4px solid var(--accent-gold);">
+                    <div class="record-img-container">
+                        <img src="Lewandowski.jpg" alt="Robert Lewandowski y sus Récords Guinness">
+                    </div>
+                    <span class="badge" style="background-color: rgba(245, 158, 11, 0.15); color: var(--accent-gold); border-color: rgba(245, 158, 11, 0.3);">
+                        ¡Marca Histórica en la Bundesliga!
+                    </span>
+                    <h3 style="margin: 0.75rem 0; font-size: 1.3rem;">Robert Lewandowski: 5 Goles en 9 Minutos</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        El 22 de septiembre de 2015, jugando para el Bayern Múnich contra el Wolfsburgo, Lewandowski anotó 5 goles entre el minuto 51 y el 60. Es el repóker más rápido en la historia de las grandes ligas europeas, consiguiendo 4 récords Guinness oficiales en un solo juego.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="record-img-container">
+                        <img src="91goles.jpg" alt="Lionel Messi 91 goles en 2012">
+                    </div>
+                    <span class="badge">Año Natural</span>
+                    <h3 style="margin: 0.75rem 0; font-size: 1.3rem;">Lionel Messi: 91 Goles en un Año (2012)</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        En 2012, Lionel Messi superó la marca histórica de Gerd Müller (85 goles) al marcar 91 goles oficiales entre el FC Barcelona y la Selección Argentina en solo 69 partidos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="record-img-container">
+                        <img src="985.jpg" alt="Cristiano Ronaldo Máximo Goleador">
+                    </div>
+                    <span class="badge">Máximo Goleador</span>
+                    <h3 style="margin: 0.75rem 0;">Cristiano Ronaldo: Máximo Goleador Oficial</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        Posee el récord del mayor número de goles anotados en partidos oficiales en la historia del fútbol profesional, superando marcas históricas a nivel de clubes y selección.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="record-img-container">
+                        <img src="3.jpg" alt="Pelé y sus 3 Copas del Mundo">
+                    </div>
+                    <span class="badge">Copas del Mundo</span>
+                    <h3 style="margin: 0.75rem 0;">Pelé: Único Ganador de 3 Mundiales</h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        Edson Arantes do Nascimento 'Pelé' se mantiene como el único futbolista en la historia capaz de conquistar tres Copas Mundiales de la FIFA (Suecia 1958, Chile 1962 y México 1970).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Conclusión -->
+    <section id="conclusion">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-comment-dots" style="color: var(--accent-green);"></i> Conclusión Personal</h2>
+            <p class="section-subtitle">Opinión sobre el contenido desarrollado y la integración de tecnologías.</p>
+
+            <div class="card">
+                <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-light); margin-bottom: 1.5rem;">
+                    "En lo personal, realizar esta página web me ayudó a entender mejor cómo el fútbol combina historia, táctica y preparación física, dejando de ser un simple juego para convertirse en una disciplina muy completa. Además, aplicar los temas de la materia de <strong>Aplicación de las Tecnologías de la Información</strong> me permitió organizar la información de forma visual y accesible, usando herramientas web modernas para estructurar proyectos académicos de manera profesional."
+                </p>
+                <div style="display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                    <div class="meta-icon"><i class="fa-solid fa-user-check"></i></div>
+                    <div>
+                        <div style="font-weight: 700;">Francisco Marines Santillán</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">Matrícula: 1972502 | Facultad de Organización Deportiva</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referencias APA -->
+    <section id="referencias">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-bookmark" style="color: var(--accent-gold);"></i> Referencias Bibliográficas (APA 7.ª Edición)</h2>
+            <p class="section-subtitle">Fuentes formales que respaldan el contenido e imágenes utilizadas en el sitio.</p>
+
+            <div class="card">
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                    <li>
+                        • FIFA Museum. (2022). <em>The origins of Cuju in China</em>. Fédération Internationale de Football Association. https://www.fifamuseum.com/en/explore/fifamuseumplus/blog/origins-cuju-in-china
+                    </li>
+                    <li>
+                        • IFAB. (2024). <em>Reglas del Juego 2024/25: Regla 1 El terreno de juego</em>. International Football Association Board. https://www.theifab.com/es/laws/latest/the-field-of-play/[cite: 1]
+                    </li>
+                    <li>
+                        • Memorias del Fútbol. (2021). <em>La historia del fútbol explicada en 10 minutos</em> [Video de YouTube]. YouTube. https://www.youtube.com/watch?v=rmO96qcYYiE
+                    </li>
+                    <li>
+                        • Wilson, J. (2019). <em>La pirámide invertida: Historia de la táctica en el fútbol</em> (2.ª ed.). Ediciones Córner.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: 2rem 0; background-color: #030a07; text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+        <div class="container">
+            <p>&copy; 2026 - Francisco Marines Santillán (Matrícula: 1972502)</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem;">Evidencia de Aprendizaje 4 | Aplicación de las Tecnologías de la Información | FOD</p>
+        </div>
+    </footer>
+
+    <!-- MODAL VENTANA FLOTANTE PARA EXPANDIR CUALQUIER IMAGEN -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImg" src="" alt="Imagen ampliada">
+    </div>
+
+    <!-- Scripts JavaScript -->
+    <script>
+        // Funciones para el Carrusel Táctico
+        let currentSlide = 0;
+        const totalSlides = 2;
+
+        function changeSlide(direction) {
+            document.querySelector(`.carousel-slide[data-index="${currentSlide}"]`).classList.remove('active');
+            document.getElementById(`carousel-info-${currentSlide}`).style.display = 'none';
+
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+
+            document.querySelector(`.carousel-slide[data-index="${currentSlide}"]`).classList.add('active');
+            document.getElementById(`carousel-info-${currentSlide}`).style.display = 'block';
+
+            document.getElementById('slide-indicator').textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        // Funciones para Agrandar Imágenes en Modal
+        function openModal(imageSrc) {
+            document.getElementById('modalImg').src = imageSrc;
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
